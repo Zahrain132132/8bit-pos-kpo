@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050805">
+  <meta name="description" content="8BIT POS — ретро-кассовая система">
+  <title>8BIT POS // CASH TERMINAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar" aria-label="Навигация">
+      <div class="brand">
+        <div class="brand-emblem" aria-hidden="true"><span>8</span><span>B</span></div>
+        <div><span class="brand-name">8BIT<span class="text-bright">POS</span></span><span class="brand-caption">RETAIL SYSTEM / V.01</span></div>
+      </div>
+      <div class="side-divider"></div>
+      <p class="side-caption">// WORKSPACE</p>
+      <nav class="menu">
+        <a class="menu-item active" href="/" aria-current="page"><span class="nav-no">01</span><span>Касса</span><span class="menu-mark">■</span></a>
+        <span class="menu-item unavailable" title="Модуль появится в следующих версиях"><span class="nav-no">02</span><span>Склад</span><span class="soon">SOON</span></span>
+        <span class="menu-item unavailable" title="Модуль появится в следующих версиях"><span class="nav-no">03</span><span>История</span><span class="soon">SOON</span></span>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="ascii-art" aria-hidden="true">┌────────────┐<br>│ <b>████████</b>   │<br>│ <b>██    ██</b>   │<br>│ <b>████████</b>   │<br>└────────────┘</div>
+        <span class="mono-muted">SYSTEM READY_</span>
+        <div class="terminal-line"><i class="status-led"></i> LOCAL REGISTER <span>ONLINE</span></div>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div class="crumbs"><span>SYS</span><span class="crumb-slash">/</span><span>RETAIL</span><span class="crumb-slash">/</span><strong>ТЕРМИНАЛ №01</strong></div>
+        <div class="topbar-right"><span class="signal"><span class="signal-icon" aria-hidden="true">◈</span> SECURE LOCAL</span><time class="clock" id="clock">--:--:--</time></div>
+      </header>
+      <div class="page-grid">
+        <main class="workspace">
+          <div class="hero-head">
+            <div>
+              <p class="eyebrow"><span class="blink-square">■</span> TERMINAL / POINT OF SALE</p>
+              <h1 class="hero-title" data-text="КАССА_01">КАССА<span class="title-index">_01</span></h1>
+              <p class="hero-subtitle">Торговая точка • каталог товаров • оформление покупок</p>
+            </div>
+            <div class="hero-chip"><span class="chip-pulse"></span><span>СИСТЕМА АКТИВНА</span><small>READY TO PROCESS</small></div>
+          </div>
+          <div class="stat-row" aria-label="Статистика каталога">
+            <div class="stat-card"><span class="stat-marker">01 //</span><span class="stat-label">ПОЗИЦИЙ В КАТАЛОГЕ</span><strong id="stat-items">--</strong><span class="stat-meta">AVAILABLE ITEMS</span></div>
+            <div class="stat-card"><span class="stat-marker">02 //</span><span class="stat-label">ЕДИНИЦ НА СКЛАДЕ</span><strong id="stat-stock">--</strong><span class="stat-meta">INVENTORY UNITS</span></div>
+            <div class="stat-card"><span class="stat-marker">03 //</span><span class="stat-label">В ТЕКУЩЕМ ЧЕКЕ</span><strong id="stat-cart">00</strong><span class="stat-meta">CART QUANTITY</span></div>
+          </div>
+          <section class="catalog-section" aria-labelledby="catalog-title">
+            <div class="section-header">
+              <div><span class="section-kicker">[01] INVENTORY DATABASE</span><h2 id="catalog-title">Каталог товаров <span class="header-spark">✳</span></h2></div>
+              <span class="view-label"><span class="live-dot"></span> LIVE DATABASE</span>
+            </div>
+            <div class="toolbar">
+              <label class="search-wrap" for="search"><span class="search-glyph" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Поиск по названию или штрихкоду..." autocomplete="off"><span class="search-shortcut">/</span></label>
+              <button type="button" class="icon-button" id="refresh" aria-label="Обновить каталог" title="Обновить каталог"><span aria-hidden="true">↻</span></button>
+            </div>
+            <p class="result-hint"><span id="result-count">ОБРАБОТКА ЗАПРОСА...</span><span class="hint-right">[ + ] ADD TO CART</span></p>
+            <div id="product-grid" class="product-grid" aria-live="polite"><div class="loading-state">▌ ЗАГРУЗКА КАТАЛОГА<span class="loading-dots">...</span></div></div>
+          </section>
+          <div class="work-footer"><span>8BIT POS // BUILD 0.2.0</span><span>DESIGNED FOR HUMANS, POWERED BY JAVA_</span></div>
+        </main>
+        <aside class="receipt-panel" aria-label="Текущая корзина">
+          <div class="receipt-top"><span class="receipt-kicker">// TERMINAL / CHECKOUT</span><div class="receipt-title-row"><h2>ТЕКУЩИЙ ЧЕК</h2><span class="receipt-number">#0001</span></div><p class="receipt-subtitle">Отсканируйте или выберите товар</p></div>
+          <form class="barcode-form" id="barcode-form"><label for="barcode">ШТРИХКОД ТОВАРА</label><div class="barcode-input-row"><input id="barcode" name="barcode" placeholder="00000000" inputmode="text" autocomplete="off" required><button type="submit" aria-label="Добавить по штрихкоду">↵</button></div></form>
+          <div class="receipt-separator"><span>ПОЗИЦИИ В ЧЕКЕ</span><span id="receipt-count">00</span></div>
+          <div class="cart-list" id="cart-list" aria-live="polite"><div class="empty-cart"><div class="empty-glyph" aria-hidden="true">[ _ ]</div><strong>КОРЗИНА ПУСТА</strong><span>Выбери товар из каталога,<br>чтобы начать покупку.</span></div></div>
+          <div class="receipt-bottom"><div class="tax-note"><span>КОЛИЧЕСТВО</span><span id="summary-count">0 ЕД.</span></div><div class="total-row"><span>ИТОГО</span><div><strong id="total-price">0,00</strong><small>BYN</small></div></div><button class="checkout-button" type="button" id="checkout" disabled><span>ОФОРМИТЬ ПОКУПКУ</span><span class="btn-arrow" aria-hidden="true">↗</span></button><button class="clear-button" type="button" id="clear-cart" disabled>× ОЧИСТИТЬ ЧЕК</button><div class="receipt-end">──────────────────────────<br>8BIT POS / THANK YOU<br><span>/// ALL SYSTEMS NOMINAL ///</span></div></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="toast-stack" id="toast-stack" role="status" aria-live="polite"></div>
+  <dialog class="success-dialog" id="success-dialog" aria-labelledby="success-title"><div class="dialog-inner"><span class="dialog-kicker">TRANSACTION COMPLETE_</span><div class="success-icon" aria-hidden="true">✓</div><h2 id="success-title">ПРОДАЖА ПРОВЕДЕНА</h2><p>Остатки товаров обновлены в базе данных.</p><div class="success-receipt"><div><span>ПОЗИЦИЙ</span><strong id="success-count">0</strong></div><div><span>СУММА</span><strong id="success-total">0,00 BYN</strong></div></div><button id="close-dialog" class="checkout-button" type="button">НОВАЯ ПОКУПКА <span aria-hidden="true">↗</span></button></div></dialog>
+</body>
+</html>
